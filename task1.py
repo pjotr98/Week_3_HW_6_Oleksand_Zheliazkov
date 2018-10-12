@@ -21,6 +21,7 @@ class Developer():
     def __call__(self):
         return self.write_code()
 
+
 class PythonDeveloper(Developer):
     def __init__(self, years_experience, name, language="Python"):
         Developer.__init__(self, name, years_experience)
@@ -28,6 +29,7 @@ class PythonDeveloper(Developer):
 
     def write_code(self):
         return "I use " + self.language + " to write code"
+
 
 class JavaDeveloper(Developer):
     def __init__(self, years_experience, name, language="Java"):
@@ -37,6 +39,7 @@ class JavaDeveloper(Developer):
     def write_code(self):
         return "I use " + self.language + " to write code"
 
+
 class RubyDeveloper(Developer):
     def __init__(self, years_experience, name, language="Ruby"):
         Developer.__init__(self, name, years_experience)
@@ -44,6 +47,28 @@ class RubyDeveloper(Developer):
 
     def write_code(self):
         return "I use " + self.language + " to write code"
+
+
+class It_company():
+
+    employee = []
+
+    def show_emloyee(self):
+        return print(sorted(self.employee, key=lambda developer: developer.years_experience))
+
+    def add_employee(self, new_employee, years_experience):
+        if years_experience < 3:
+            print('Not enough experience')
+        else:
+            self.employee.append(new_employee)
+
+    def fire_employee(self, name):
+        for e in self.employee:
+            if e.name == name:
+                self.employee.remove(e)
+                return "Employee " + name + " is fired"
+            else:
+                return "Employee " + name + " not found"
 
 if __name__=='__main__':
 
@@ -71,3 +96,10 @@ if __name__=='__main__':
     print(developer())
     developer2 = RubyDeveloper('Kolian', 5)
     print(developer2())
+    print("\n")
+    print("\n")
+    It_company.add_employee("Alex", 3)
+    #print(It_company.add_employee("Petr", 4))
+    print(It_company.employee)
+    It_company.fire_employee(a)
+    print(It_company.employee)
